@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="ТехГеоПроект">
+ <rect width="128" height="128" rx="24" fill="#2B3036"/>
+ <g transform="translate(20,20) scale(0.88)">
+ <rect x="8" y="8" width="52" height="52" fill="none" stroke="#FBF6EE" stroke-width="11"/>
+ <rect x="40" y="40" width="52" height="52" fill="none" stroke="#FBF6EE" stroke-width="11"/>
+ <rect x="40" y="40" width="20" height="20" fill="#F2A73B"/>
+ </g>
+</svg>

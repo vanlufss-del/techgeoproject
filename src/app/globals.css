@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --color-graphite: #363D45;
+  --color-amber: #F2A73B;
+  --color-amber-dk: #A06D12;
+  --color-amber-lt: #FFB84D;
+  --color-cream: #FBF6EE;
+  --color-dark: #2B3036;
+  --color-ink: #22262B;
+  --color-ink-deep: #1C2024;
+  --color-muted: #565E68;
+  --color-line: #E7DFCE;
+
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --ease-snap: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-quint: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    /* clip, а не hidden: hidden создаёт контейнер прокрутки и ломает
+       position: sticky у меню-якорей на страницах услуг */
+    overflow-x: clip;
+    background: #fff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--color-amber); color: var(--color-ink); }
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+  :focus-visible { outline: 2px solid var(--color-amber); outline-offset: 3px; border-radius: 2px; }
+  /* чтобы фиксированная шапка не закрывала цель перехода по якорю */
+  [id] { scroll-margin-top: 128px; }
+  a { text-underline-offset: 4px; }
+  /* место под прилипшую полосу действий на телефонах */
+  @media (max-width: 1023px) {
+    body { padding-bottom: 68px; }
+    /* на телефоне мелкие подписи поднимаем до читаемого минимума */
+    .font-mono { font-size: max(1em, 12.5px); }
+  }
+}
+
+@layer utilities {
+  .num-tab { font-feature-settings: 'tnum' 1, 'lnum' 1; font-variant-numeric: tabular-nums lining-nums; }
+  /* горизонтальная прокрутка меню-якорей без видимой полосы */
+  .scrollbar-none { scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+  /* длинные слова и адреса не должны выдавливать раскладку на узких экранах */
+  .break-anywhere { overflow-wrap: anywhere; }
+}
+
+/* --- вход первого экрана --- */
+@keyframes heroZoom { from { transform: scale(1.09); } to { transform: scale(1); } }
+@keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lineUp   { from { transform: translateY(108%); } to { transform: translateY(0); } }
+@keyframes wipeIn   { from { clip-path: inset(0 100% 0 0); opacity: 0; } to { clip-path: inset(0 0 0 0); opacity: 1; } }
+@keyframes scanPass { 0% { transform: translateY(-6vh); opacity: 0; } 10% { opacity: .85; } 80% { opacity: .5; } 100% { transform: translateY(106vh); opacity: 0; } }
+@keyframes upFade   { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes hdrIn    { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
+@keyframes veilOut  { from { opacity: 1; } to { opacity: 0; } }
+@keyframes modalIn  { from { opacity: 0; transform: translateY(16px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes cookieIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.a-cookie { animation: cookieIn .45s var(--ease-snap) .6s both; }
+
+.a-heroZoom { animation: heroZoom 4.4s cubic-bezier(.14,.8,.22,1) both, fadeIn 1.6s ease both; }
+.a-curtain  { animation: veilOut 1.6s cubic-bezier(.4,0,.2,1) both; }
+.a-scan     { animation: scanPass 2.3s cubic-bezier(.44,0,.2,1) .4s both; will-change: transform; }
+.a-eyebrow  { animation: wipeIn 1.25s cubic-bezier(.38,0,.14,1) .7s both; }
+.a-line     { animation: lineUp 1.35s cubic-bezier(.14,.86,.26,1) both; }
+.a-btns     { animation: upFade 1.05s var(--ease-snap) 1.5s both; }
+.a-hdr      { animation: hdrIn 1.15s var(--ease-snap) .35s both; }
+
+/* Появление при скролле.
+   Блок прячется только если JS доступен — класс js ставится инлайн-скриптом до отрисовки.
+   Без скрипта, при ошибке гидратации и в режиме печати контент виден всегда. */
+.rv { transition: opacity .65s var(--ease-snap), transform .65s var(--ease-snap); }
+html.js .rv { opacity: 0; transform: translateY(20px); }
+html.js .rv.is-in { opacity: 1; transform: none; }
+@media print { .rv { opacity: 1 !important; transform: none !important; } }
+
+/* Tailwind сбрасывает margin у всех элементов, а нативное модальное окно
+   центрируется именно через margin:auto — возвращаем. */
+dialog { margin: auto; }
+dialog::backdrop { background: rgba(14,17,20,.66); backdrop-filter: blur(7px); }
+dialog[open] { animation: modalIn .32s var(--ease-snap) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .rv { opacity: 1; transform: none; }
+  .a-curtain, .a-scan { display: none; }
+}
