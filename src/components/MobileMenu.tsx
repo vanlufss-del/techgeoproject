@@ -144,9 +144,9 @@ export function MobileMenu() {
               </a>
 
               <div className="mt-5 flex items-center gap-2">
-                <a href={company.max} aria-label="Написать в MAX" className="grid h-12 w-12 place-items-center leading-none">
+                {company.max && (<a href={company.max} aria-label="Написать в MAX" className="grid h-12 w-12 place-items-center leading-none">
                   <MaxIcon id="mxMenu" size={44} />
-                </a>
+                </a>)}
                 <a href={company.whatsapp} target="_blank" rel="noopener" aria-label="Написать в WhatsApp" className="grid h-12 w-12 place-items-center leading-none">
                   <WhatsAppIcon size={44} />
                 </a>

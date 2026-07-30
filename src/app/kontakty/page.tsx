@@ -61,9 +61,9 @@ export default function ContactsPage() {
 
               <Field label={contacts.messengersLabel}>
                 <div className="mb-3 flex items-center gap-3">
-                  <a href={company.max} aria-label="Написать в MAX" className="leading-none transition hover:-translate-y-0.5">
+                  {company.max && (<a href={company.max} aria-label="Написать в MAX" className="leading-none transition hover:-translate-y-0.5">
                     <MaxIcon id="mxContacts" size={44} />
-                  </a>
+                  </a>)}
                   <a href={company.whatsapp} target="_blank" rel="noopener" aria-label="Написать в WhatsApp" className="leading-none transition hover:-translate-y-0.5">
                     <WhatsAppIcon size={44} />
                   </a>

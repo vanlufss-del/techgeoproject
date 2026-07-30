@@ -354,7 +354,7 @@ export function CtaSection() {
                 {cta.messengerLine}
               </p>
               <div className="mt-6 flex items-center gap-3">
-                <a href={company.max} aria-label="MAX" className="leading-none transition hover:-translate-y-0.5"><MaxIcon id="mxCta" size={46} /></a>
+                {company.max && (<a href={company.max} aria-label="MAX" className="leading-none transition hover:-translate-y-0.5"><MaxIcon id="mxCta" size={46} /></a>)}
                 <a href={company.whatsapp} aria-label="WhatsApp" className="leading-none transition hover:-translate-y-0.5"><WhatsAppIcon size={46} /></a>
               </div>
             </div>
