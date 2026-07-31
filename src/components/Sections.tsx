@@ -418,8 +418,21 @@ export function Goal() {
           </h2>
         </Reveal>
         <Reveal delay={80}>
-          <div className="grid aspect-video place-items-center rounded-lg border border-white/10 bg-[#242930] font-mono text-[12px] font-medium uppercase tracking-[0.14em] text-white/35">
-            {goal.photoLabel}
+          <div className="relative overflow-hidden rounded-lg border border-white/10">
+            <picture>
+              <source type="image/avif" srcSet="/img/goal.avif" />
+              <source type="image/webp" srcSet="/img/goal.webp" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/img/goal.jpg"
+                alt={goal.photoAlt}
+                width={1920}
+                height={1080}
+                loading="lazy"
+                decoding="async"
+                className="block aspect-video h-auto w-full object-cover"
+              />
+            </picture>
           </div>
         </Reveal>
       </div>
