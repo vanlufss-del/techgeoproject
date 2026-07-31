@@ -19,7 +19,7 @@ import { MobileBar } from "@/components/MobileBar";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Маркшейдерские работы и проектирование для карьеров — ТехГеоПроект",
+    default: "Проектные и маркшейдерские работы для карьеров и горных предприятий",
     template: "%s | ТехГеоПроект",
   },
   description:
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     siteName: company.legal,
     url: siteUrl,
-    title: "Маркшейдерские работы и проектирование для карьеров — ТехГеоПроект",
+    title: "Проектные и маркшейдерские работы для карьеров и горных предприятий",
     description:
       "Проектирование разработки месторождений, ПРГР, аэрофотосъёмка и подсчёт объёмов. Смета под задачу, цены ниже рынка.",
     images: [{ url: "/og.jpg", width: 1200, height: 630, alt: company.legal }],
