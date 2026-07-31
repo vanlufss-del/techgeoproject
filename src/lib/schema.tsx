@@ -1,3 +1,4 @@
+import type { Post } from "@/blog";
 import { company, faq, geo, services } from "@/copy";
 import { siteUrl } from "./site";
 
@@ -95,6 +96,27 @@ export function faqSchema() {
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
+  };
+}
+
+/** Разметка статьи. Поисковики и языковые модели берут отсюда дату, автора и тему. */
+export function articleSchema(post: Post) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.metaDescription,
+    datePublished: post.date,
+    dateModified: post.updated ?? post.date,
+    inLanguage: "ru-RU",
+    articleSection: post.tag,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${siteUrl}/stati/${post.slug}` },
+    author: { "@type": "Organization", name: company.legal, url: siteUrl },
+    publisher: {
+      "@type": "Organization",
+      name: company.legal,
+      logo: { "@type": "ImageObject", url: `${siteUrl}/logo.svg` },
+    },
   };
 }
 

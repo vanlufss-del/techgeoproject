@@ -82,6 +82,7 @@ export const nav = [
   { label: "О нас", href: "/#about", menu: "about" },
   { label: "Наши услуги", href: "/#svc", menu: "services" },
   { label: "Цены", href: "/tseny" },
+  { label: "Статьи", href: "/stati" },
   { label: "Контакты", href: "/kontakty" },
 ] as const;
 
@@ -321,8 +322,8 @@ export const footer = {
     { label: "Лицензии", href: "/litsenzii" },
     { label: "Оборудование", href: "/oborudovanie" },
     { label: "Цены", href: "/tseny" },
+    { label: "Статьи", href: "/stati" },
     { label: "Контакты", href: "/kontakty" },
-    
   ],
 } as const;
 
