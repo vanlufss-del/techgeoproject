@@ -115,7 +115,7 @@ export function LeadDialog() {
             <input type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute left-[-9999px] h-0 w-0" />
 
             <div className="relative mb-3">
-              <input name="name" type="text" required autoComplete="name" placeholder={lead.namePlaceholder} className={field} />
+              <input name="name" type="text" required autoComplete="name" aria-label={lead.namePlaceholder} placeholder={lead.namePlaceholder} className={field} />
               <svg className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#B0A896]" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
                 <circle cx="12" cy="8" r="4" />
                 <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
@@ -129,6 +129,7 @@ export function LeadDialog() {
                 required
                 inputMode="tel"
                 autoComplete="tel"
+                aria-label="Номер телефона"
                 placeholder={lead.phonePlaceholder}
                 value={phone}
                 onChange={(e) => setPhone(formatPhone(e.target.value))}
