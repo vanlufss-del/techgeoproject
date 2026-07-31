@@ -50,8 +50,14 @@ function Featured() {
                   />
                 </picture>
               ) : (
-                <div className="grid aspect-square place-items-center text-graphite/25">
-                  <span className="scale-[3]"><DeviceIcon kind={d.kind} /></span>
+                <div className="flex aspect-square flex-col items-center justify-center gap-5 bg-[#F5F2EC] px-8 text-center">
+                  <span className="grid h-20 w-20 place-items-center rounded-2xl bg-graphite text-amber">
+                    <span className="scale-[1.7]"><DeviceIcon kind={d.kind} /></span>
+                  </span>
+                  <span className="font-mono text-[15px] font-medium uppercase tracking-[0.1em] text-ink">{d.model}</span>
+                  <span className="num-tab font-mono text-[12px] tracking-[0.04em] text-muted">
+                    Зав. № {d.serial}
+                  </span>
                 </div>
               )}
             </div>
@@ -164,11 +170,12 @@ export function Equipment({ compact = false }: { compact?: boolean }) {
                     </span>
                   </div>
                 ) : (
-                  <div className="mb-5 flex items-start justify-between gap-4">
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-graphite text-amber">
-                      <DeviceIcon kind={d.kind} />
+                  <div className="relative mb-5 flex aspect-square flex-col items-center justify-center gap-4 rounded-lg bg-[#F5F2EC] px-5 text-center">
+                    <span className="grid h-14 w-14 place-items-center rounded-xl bg-graphite text-amber">
+                      <span className="scale-[1.25]"><DeviceIcon kind={d.kind} /></span>
                     </span>
-                    <span className="num-tab rounded border border-amber/45 px-2.5 py-1 font-mono text-[11px] tracking-[0.04em] text-amber-dk">
+                    <span className="font-mono text-[13px] font-medium uppercase tracking-[0.1em] text-ink">{d.model}</span>
+                    <span className="num-tab absolute right-3 top-3 rounded border border-amber/45 bg-white/92 px-2.5 py-1 font-mono text-[11px] tracking-[0.04em] text-amber-dk">
                       до {d.validUntil}
                     </span>
                   </div>
