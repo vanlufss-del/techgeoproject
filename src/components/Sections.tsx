@@ -165,7 +165,12 @@ export function Services() {
                 <h3 className="mb-5 flex min-h-[2.5em] items-start text-[clamp(22px,2.4vw,30px)] font-semibold leading-tight tracking-[-0.02em] max-lg:min-h-0">
                   <Link href={`/uslugi/${s.slug}`} className="no-underline transition hover:text-amber-dk">{s.title}</Link>
                 </h3>
-                <ServicePhoto slug={s.slug} alt={s.alt} />
+                {/* фотография ведёт туда же, что и заголовок. tabIndex={-1} — чтобы с клавиатуры
+                    не появлялась вторая остановка на ту же страницу; описание снимка при этом
+                    остаётся доступным программам чтения */}
+                <Link href={`/uslugi/${s.slug}`} tabIndex={-1} className="block no-underline">
+                  <ServicePhoto slug={s.slug} alt={s.alt} />
+                </Link>
                 <ul className="m-0 flex-1 list-none p-0">
                   {s.bullets.map((b) => (
                     <li key={b} className="relative py-[5px] pl-[18px] text-[14.5px] leading-[1.45] text-graphite before:absolute before:left-0.5 before:top-[11px] before:h-[5px] before:w-[5px] before:rounded-full before:bg-amber">

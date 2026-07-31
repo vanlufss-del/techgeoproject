@@ -2,7 +2,7 @@
 export function ServicePhoto({ slug, alt }: { slug: string; alt: string }) {
   const base = `/img/services/${slug}`;
   return (
-    <div className="relative mb-5 overflow-hidden rounded-xl bg-graphite">
+    <div className="relative mb-5 cursor-pointer overflow-hidden rounded-xl bg-graphite">
       <picture>
         <source type="image/avif" srcSet={`${base}.avif`} />
         <source type="image/webp" srcSet={`${base}.webp`} />
