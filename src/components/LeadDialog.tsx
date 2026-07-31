@@ -162,10 +162,10 @@ export function LeadDialog() {
 
           <div className="mt-5 flex items-center gap-3 border-t border-line pt-5">
             <span className="text-[13.5px] text-muted">{lead.altLine}</span>
-            {company.max && (<a href={company.max} aria-label="MAX" className="leading-none transition hover:-translate-y-0.5">
+            {company.max && (<a href={company.max} target="_blank" rel="noopener" aria-label="MAX" className="leading-none transition hover:-translate-y-0.5">
               <MaxIcon id="mxDlg" size={38} />
             </a>)}
-            <a href={company.whatsapp} aria-label="WhatsApp" className="leading-none transition hover:-translate-y-0.5">
+            <a href={company.whatsapp} target="_blank" rel="noopener" aria-label="WhatsApp" className="leading-none transition hover:-translate-y-0.5">
               <WhatsAppIcon size={38} />
             </a>
           </div>

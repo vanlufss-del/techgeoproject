@@ -22,7 +22,7 @@ export const company = {
   ogrn: "1264200006070",
   /** Личная ссылка из приложения MAX: Настройки → Пригласить друзей → Скопировать ссылку.
    *  Вид: https://max.ru/u/<токен>. Универсальной ссылки по номеру телефона у MAX нет. */
-  max: "#",   // временная заглушка: ссылку заказчик даёт завтра
+  max: "https://max.ru/u/f9LHodD0cOKZanTkIPKEtWWgVZtTQgLFKKAuBGJi7Hn9JhOeXYm6rOmjUwk",
   whatsapp: "https://wa.me/79617220001",
 } as const;
 

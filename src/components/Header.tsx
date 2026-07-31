@@ -84,10 +84,10 @@ export function Header() {
         <MobileMenu />
 
         <div className="flex shrink-0 items-center gap-1.5 max-lg:gap-0.5 [&_svg]:drop-shadow-[0_1px_6px_rgba(0,0,0,.35)]">
-          {company.max && (<a href={company.max} aria-label="Написать в MAX" className="grid h-11 w-11 place-items-center leading-none transition hover:-translate-y-0.5">
+          {company.max && (<a href={company.max} target="_blank" rel="noopener" aria-label="Написать в MAX" className="grid h-11 w-11 place-items-center leading-none transition hover:-translate-y-0.5">
             <MaxIcon id="mxHdr" size={36} />
           </a>)}
-          <a href={company.whatsapp} aria-label="Написать в WhatsApp" className="grid h-11 w-11 place-items-center leading-none transition hover:-translate-y-0.5">
+          <a href={company.whatsapp} target="_blank" rel="noopener" aria-label="Написать в WhatsApp" className="grid h-11 w-11 place-items-center leading-none transition hover:-translate-y-0.5">
             <WhatsAppIcon size={36} />
           </a>
           <a href={`mailto:${company.email}`} aria-label="Написать на почту" className="grid h-11 w-11 place-items-center leading-none transition hover:-translate-y-0.5">
