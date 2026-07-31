@@ -1,5 +1,5 @@
 import { Hero } from "@/components/Hero";
-import { About, Advantages, ContactStrip, CtaSection, Docs, Faq, Goal, Intro, Legal, Services, Values } from "@/components/Sections";
+import { Advantages, ContactStrip, CtaSection, Docs, Faq, Goal, Intro, Legal, Services, Values } from "@/components/Sections";
 import { JsonLd, faqSchema, servicesSchema } from "@/lib/schema";
 
 export default function HomePage() {
@@ -12,7 +12,6 @@ export default function HomePage() {
       <Legal />
       <Docs />
       <ContactStrip />
-      <About />
       <Faq />
       <CtaSection />
       <Values />

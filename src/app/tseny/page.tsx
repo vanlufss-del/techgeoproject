@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { company, prices } from "@/copy";
 import { JsonLd, breadcrumbSchema } from "@/lib/schema";
+import { Reveal } from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Цены на маркшейдерские и геодезические работы",
@@ -110,6 +111,25 @@ export default function PricesPage() {
             <span className="relative -top-[5px] h-px w-6 shrink-0 bg-amber" />
             {prices.unitsNote}
           </p>
+        </div>
+      </section>
+
+      <section className="bg-white pb-4 max-lg:pb-2">
+        <div className={wrap}>
+          <Reveal>
+            <div className="grid grid-cols-[0.9fr_1.1fr] items-start gap-14 border-t border-line pt-14 max-lg:grid-cols-1 max-lg:gap-7 max-lg:pt-10">
+              <h2 className="m-0 text-[clamp(24px,2.8vw,34px)] font-semibold leading-tight tracking-[-0.02em] text-ink">
+                {prices.packageTitle}
+              </h2>
+              <div className="flex flex-col gap-5">
+                <p className="m-0 text-[17px] leading-relaxed text-graphite">{prices.packageText}</p>
+                <p className="m-0 text-[17px] leading-relaxed text-graphite">{prices.packageText2}</p>
+                <p className="m-0 border-l-[3px] border-amber pl-5 text-[17px] font-medium leading-relaxed text-ink">
+                  {prices.packageNote}
+                </p>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 

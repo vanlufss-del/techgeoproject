@@ -188,12 +188,10 @@ export function Legal() {
   return (
     <section className="bg-white py-16">
       <div className={wrap}>
-        <details className="group">
-          <summary className="cursor-pointer list-none text-center font-mono text-xs uppercase tracking-[0.16em] text-amber-dk [&::-webkit-details-marker]:hidden">
-            {legal.summary}
-          </summary>
-          <p className="mx-auto mt-5 max-w-[96ch] text-center text-sm leading-[1.75] text-[#8B929B]">{legal.text}</p>
-        </details>
+        <div className="mx-auto max-w-[96ch] text-center">
+          <div className="mb-5 font-mono text-xs uppercase tracking-[0.16em] text-amber-dk">{legal.summary}</div>
+          <p className="m-0 text-sm leading-[1.75] text-graphite">{legal.text}</p>
+        </div>
       </div>
     </section>
   );
