@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { company, license } from "@/copy";
+import { certificates, company, license } from "@/copy";
 import { JsonLd, breadcrumbSchema } from "@/lib/schema";
 import { Reveal } from "@/components/Reveal";
+import { Eyebrow } from "@/components/Type";
 
 export const metadata: Metadata = {
-  title: "Лицензия на производство маркшейдерских работ",
+  title: "Лицензия и сертификаты качества",
   description:
-    "Действующая лицензия ООО «ТехГеоПроект» на производство маркшейдерских работ: регистрационный номер, дата предоставления, лицензирующий орган и перечень разрешённых видов работ. Выписка из реестра лицензий в PDF.",
+    "Действующая лицензия ООО «ТехГеоПроект» на производство маркшейдерских работ и сертификаты системы менеджмента качества по ГОСТ Р ИСО 9001-2015. Регистрационные номера, сроки действия, документы в PDF.",
   alternates: { canonical: "/litsenzii" },
   openGraph: { title: "Лицензия и документы — ТехГеоПроект", url: "/litsenzii" },
 };
@@ -117,6 +118,110 @@ export default function LicensePage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section id="sertifikaty" className="bg-white py-20 max-lg:py-14">
+        <div className={wrap}>
+          <Reveal>
+            <div className="mb-5">
+              <Eyebrow>{certificates.tag}</Eyebrow>
+            </div>
+          </Reveal>
+          <Reveal delay={70}>
+            <h2 className="mb-4 max-w-[24ch] text-[clamp(24px,3vw,34px)] font-semibold leading-snug tracking-[-0.02em]">
+              {certificates.title}
+            </h2>
+          </Reveal>
+          <Reveal delay={120}>
+            <p className="m-0 mb-9 max-w-[76ch] text-[17px] leading-relaxed text-muted">{certificates.lead}</p>
+          </Reveal>
+
+          <Reveal delay={160}>
+            <dl className="mb-12 grid grid-cols-4 gap-px border border-line bg-line max-lg:grid-cols-2">
+              {[
+                ["Регистрационный номер", certificates.regNumber],
+                ["Стандарт", certificates.standard],
+                ["Дата регистрации", certificates.validFrom],
+                ["Действует до", certificates.validUntil],
+              ].map(([k, v]) => (
+                <div key={k} className="bg-white px-6 py-5">
+                  <dt className="mb-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-amber-dk">{k}</dt>
+                  <dd className="m-0 text-[15.5px] font-medium leading-snug text-ink">{v}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+
+          <div className="grid grid-cols-3 gap-8 max-lg:grid-cols-1 max-lg:gap-7">
+            {certificates.items.map((c, i) => (
+              <Reveal key={c.slug} delay={(i % 3) * 70}>
+                <a
+                  href={`/docs/sertifikaty/${c.slug}.pdf`}
+                  target="_blank"
+                  rel="noopener"
+                  className="group flex h-full flex-col no-underline"
+                >
+                  <div className="mb-5 overflow-hidden rounded-lg border border-line bg-cream">
+                    <picture>
+                      <source type="image/avif" srcSet={`/docs/sertifikaty/${c.slug}.avif`} />
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={`/docs/sertifikaty/${c.slug}.jpg`}
+                        alt={`${c.title}: ${c.subtitle}`}
+                        width={495}
+                        height={700}
+                        loading="lazy"
+                        decoding="async"
+                        className="block h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </picture>
+                  </div>
+                  <h3 className="mb-1.5 text-[18px] font-semibold leading-snug text-ink transition-colors group-hover:text-amber-dk">
+                    {c.title}
+                  </h3>
+                  <p className="m-0 mb-3 text-[14.5px] leading-snug text-graphite">{c.subtitle}</p>
+                  <p className="m-0 mb-4 flex-1 text-[14px] leading-relaxed text-muted">{c.note}</p>
+                  <span className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.12em] text-amber-dk">
+                    Открыть PDF
+                    <span
+                      aria-hidden="true"
+                      className="h-[2px] w-6 bg-amber transition-[width] duration-300 group-hover:w-10"
+                    />
+                  </span>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-14 grid grid-cols-2 gap-14 border-t border-line pt-12 max-lg:grid-cols-1 max-lg:gap-8">
+            <Reveal>
+              <div>
+                <h3 className="mb-3 text-[19px] font-semibold tracking-[-0.01em] text-ink">
+                  {certificates.scopeTitle}
+                </h3>
+                <ul className="m-0 list-none p-0">
+                  {certificates.scope.map((x) => (
+                    <li
+                      key={x}
+                      className="relative py-[6px] pl-[18px] text-[15.5px] leading-snug text-graphite before:absolute before:left-0.5 before:top-[13px] before:h-[5px] before:w-[5px] before:rounded-full before:bg-amber"
+                    >
+                      {x}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 text-[14px] leading-relaxed text-muted">{certificates.scopeNote}</p>
+              </div>
+            </Reveal>
+            <Reveal delay={80}>
+              <div className="border-l-[3px] border-amber bg-cream px-7 py-6">
+                <h3 className="mb-3 text-[19px] font-semibold tracking-[-0.01em] text-ink">
+                  {certificates.systemTitle}
+                </h3>
+                <p className="m-0 text-[15.5px] leading-relaxed text-graphite">{certificates.systemText}</p>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
