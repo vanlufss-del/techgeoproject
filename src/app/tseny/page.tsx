@@ -114,10 +114,10 @@ export default function PricesPage() {
         </div>
       </section>
 
-      <section className="bg-white pb-4 max-lg:pb-2">
+      <section className="bg-cream pt-20 max-lg:pt-14">
         <div className={wrap}>
           <Reveal>
-            <div className="grid grid-cols-[0.9fr_1.1fr] items-start gap-14 border-t border-line pt-14 max-lg:grid-cols-1 max-lg:gap-7 max-lg:pt-10">
+            <div className="grid grid-cols-[0.9fr_1.1fr] items-start gap-14 max-lg:grid-cols-1 max-lg:gap-7">
               <h2 className="m-0 text-[clamp(24px,2.8vw,34px)] font-semibold leading-tight tracking-[-0.02em] text-ink">
                 {prices.packageTitle}
               </h2>
@@ -133,7 +133,7 @@ export default function PricesPage() {
         </div>
       </section>
 
-      <section className="bg-cream py-20 max-lg:py-14">
+      <section className="bg-cream pb-20 pt-14 max-lg:pb-14 max-lg:pt-10">
         <div className={wrap}>
           <div className="grid grid-cols-[1fr_auto] items-center gap-14 rounded-r-md border-l-[3px] border-amber bg-white px-10 py-9 shadow-[0_3px_24px_rgba(63,71,80,.08)] max-lg:grid-cols-1 max-lg:gap-7 max-lg:px-6 max-lg:py-7">
             <div>
