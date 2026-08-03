@@ -71,7 +71,7 @@ export default function PricesPage() {
                         <th className="w-[11%] py-3 pr-6 font-mono text-[11px] font-normal uppercase tracking-[0.14em] text-muted">{prices.columns.approval}</th>
                       </>
                     )}
-                    <th className="w-[10%] py-3 pr-6 font-mono text-[11px] font-normal uppercase tracking-[0.14em] text-muted">{prices.columns.term}</th>
+                    <th className="w-[13%] py-3 pr-6 font-mono text-[11px] font-normal uppercase tracking-[0.14em] text-muted">{prices.columns.term}</th>
                     <th className="w-[15%] py-3 font-mono text-[11px] font-normal uppercase tracking-[0.14em] text-muted">{prices.columns.price}</th>
                   </tr>
                 </thead>

@@ -423,7 +423,7 @@ export const prices = {
   columns: {
     name: "Наименование",
     result: "Что получите",
-    term: "Срок",
+    term: "Срок выполнения",
     org: "Согласующий орган",
     approval: "Срок согласования",
     price: "Стоимость",
