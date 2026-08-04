@@ -13,6 +13,7 @@ import { Footer } from "@/components/Footer";
 import { LeadDialog } from "@/components/LeadDialog";
 import { CookieNotice } from "@/components/CookieNotice";
 import { Analytics } from "@/components/Analytics";
+import { GoalTracker } from "@/components/GoalTracker";
 import { ScrollTop } from "@/components/ScrollTop";
 import { MobileBar } from "@/components/MobileBar";
 
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <MobileBar />
         <CookieNotice />
         <Analytics />
+        <GoalTracker />
         <JsonLd data={organizationSchema()} />
         {localBusinessSchema() && <JsonLd data={localBusinessSchema()!} />}
       </body>

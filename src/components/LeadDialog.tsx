@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { company, lead } from "@/copy";
+import { reachGoal } from "@/lib/metrika";
 import { MaxIcon, WhatsAppIcon } from "./Icons";
 
 type State = "form" | "sending" | "done" | "error";
@@ -60,6 +61,7 @@ export function LeadDialog() {
         }),
       });
       setState(res.ok ? "done" : "error");
+      if (res.ok) reachGoal("lead_submit");
     } catch {
       setState("error");
     }
