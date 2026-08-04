@@ -6,11 +6,13 @@ import { reachGoal } from "@/lib/metrika";
 import { MaxIcon, WhatsAppIcon } from "./Icons";
 
 type State = "form" | "sending" | "done" | "error";
+type ErrorKind = "generic" | "tooMany" | "invalid" | "server";
 
 /** Короткая форма заявки: имя + телефон. Открывается из любой кнопки с data-lead. */
 export function LeadDialog() {
   const ref = useRef<HTMLDialogElement>(null);
   const [state, setState] = useState<State>("form");
+  const [errorKind, setErrorKind] = useState<ErrorKind>("generic");
   const [phone, setPhone] = useState("");
 
   const open = useCallback(() => {
@@ -60,9 +62,17 @@ export function LeadDialog() {
           source: "modal",
         }),
       });
-      setState(res.ok ? "done" : "error");
-      if (res.ok) reachGoal("lead_submit");
+      if (res.ok) {
+        setState("done");
+        reachGoal("lead_submit");
+        return;
+      }
+      // код ответа подсказывает, что человеку делать дальше
+      setErrorKind(res.status === 429 ? "tooMany" : res.status === 400 ? "invalid" : "server");
+      setState("error");
     } catch {
+      // сюда попадаем при обрыве сети: сервер не ответил вовсе
+      setErrorKind("generic");
       setState("error");
     }
   }
@@ -152,7 +162,17 @@ export function LeadDialog() {
               </span>
             </label>
 
-            {state === "error" && <p className="mb-3 text-sm text-[#A32D2D]">{lead.errorText}</p>}
+            {state === "error" && (
+              <p className="mb-3 text-sm leading-snug text-[#A32D2D]">
+                {errorKind === "tooMany"
+                  ? lead.errorTooMany
+                  : errorKind === "invalid"
+                    ? lead.errorInvalid
+                    : errorKind === "server"
+                      ? lead.errorServer
+                      : lead.errorText}
+              </p>
+            )}
 
             <button
               type="submit"
