@@ -11,6 +11,7 @@ const icons: Record<string, React.ReactNode> = {
   level: <><rect x="4" y="8" width="14" height="5" rx="1" /><path d="M18 10.5h3M11 13v3M7 20h8l-4-4z" /></>,
   theodolite: <><rect x="9" y="3" width="6" height="6" rx="1" /><path d="M12 9v4M12 13 7 21M12 13l5 8M5 21h14" /></>,
   staff: <><rect x="9.5" y="2" width="5" height="20" rx="1" /><path d="M9.5 6h5M9.5 10h5M9.5 14h5M9.5 18h5" /></>,
+  drone: <><path d="M6 6l4 4M18 6l-4 4M6 18l4-4M18 18l-4-4" /><rect x="9" y="9" width="6" height="6" rx="1" /><circle cx="5" cy="5" r="2.2" /><circle cx="19" cy="5" r="2.2" /><circle cx="5" cy="19" r="2.2" /><circle cx="19" cy="19" r="2.2" /></>,
   tape: <><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="2.5" /><path d="M12 20v2h8" /></>,
 };
 
@@ -75,17 +76,27 @@ function Featured() {
                     <dd className="num-tab m-0 text-right text-[14.5px] font-medium leading-snug text-ink max-lg:text-left">{v}</dd>
                   </div>
                 ))}
-                <div className="flex justify-between gap-6 border-b border-line py-2.5 max-lg:flex-col max-lg:gap-0.5">
-                  <dt className="shrink-0 text-[14px] text-muted">Заводской номер</dt>
-                  <dd className="num-tab m-0 text-right font-mono text-[14.5px] font-medium text-ink max-lg:text-left">{d.serial}</dd>
-                </div>
-                <div className="flex justify-between gap-6 border-b border-line py-2.5 max-lg:flex-col max-lg:gap-0.5">
-                  <dt className="shrink-0 text-[14px] text-muted">Поверка действительна до</dt>
-                  <dd className="num-tab m-0 text-right text-[14.5px] font-semibold text-amber-dk max-lg:text-left">{d.validUntil}</dd>
-                </div>
+                {d.serial && (
+                  <div className="flex justify-between gap-6 border-b border-line py-2.5 max-lg:flex-col max-lg:gap-0.5">
+                    <dt className="shrink-0 text-[14px] text-muted">Заводской номер</dt>
+                    <dd className="num-tab m-0 text-right font-mono text-[14.5px] font-medium text-ink max-lg:text-left">{d.serial}</dd>
+                  </div>
+                )}
+                {d.validUntil && (
+                  <div className="flex justify-between gap-6 border-b border-line py-2.5 max-lg:flex-col max-lg:gap-0.5">
+                    <dt className="shrink-0 text-[14px] text-muted">Поверка действительна до</dt>
+                    <dd className="num-tab m-0 text-right text-[14.5px] font-semibold text-amber-dk max-lg:text-left">{d.validUntil}</dd>
+                  </div>
+                )}
               </dl>
 
               <div className="flex flex-wrap items-center gap-4">
+                {!d.pdf && d.note && (
+                  <p className="m-0 max-w-[62ch] border-l-[3px] border-amber pl-5 text-[14.5px] leading-relaxed text-graphite">
+                    {d.note}
+                  </p>
+                )}
+                {d.pdf && (
                 <a
                   href={d.pdf}
                   target="_blank"
@@ -97,6 +108,7 @@ function Featured() {
                   </svg>
                   Свидетельство о поверке
                 </a>
+                )}
                 {d.fgis && (
                   <a
                     href={d.fgis}
@@ -165,9 +177,11 @@ export function Equipment({ compact = false }: { compact?: boolean }) {
                         className="block aspect-square h-auto w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]"
                       />
                     </picture>
-                    <span className="num-tab absolute right-3 top-3 rounded border border-amber/50 bg-white/92 px-2.5 py-1 font-mono text-[11px] tracking-[0.04em] text-amber-dk backdrop-blur-sm">
-                      до {d.validUntil}
-                    </span>
+                    {d.validUntil && (
+                      <span className="num-tab absolute right-3 top-3 rounded border border-amber/50 bg-white/92 px-2.5 py-1 font-mono text-[11px] tracking-[0.04em] text-amber-dk backdrop-blur-sm">
+                        до {d.validUntil}
+                      </span>
+                    )}
                   </div>
                 ) : (
                   <div className="relative mb-5 flex aspect-square flex-col items-center justify-center gap-4 rounded-lg bg-[#F5F2EC] px-5 text-center">
@@ -175,9 +189,11 @@ export function Equipment({ compact = false }: { compact?: boolean }) {
                       <span className="scale-[1.25]"><DeviceIcon kind={d.kind} /></span>
                     </span>
                     <span className="font-mono text-[13px] font-medium uppercase tracking-[0.1em] text-ink">{d.model}</span>
-                    <span className="num-tab absolute right-3 top-3 rounded border border-amber/45 bg-white/92 px-2.5 py-1 font-mono text-[11px] tracking-[0.04em] text-amber-dk">
-                      до {d.validUntil}
-                    </span>
+                    {d.validUntil && (
+                      <span className="num-tab absolute right-3 top-3 rounded border border-amber/45 bg-white/92 px-2.5 py-1 font-mono text-[11px] tracking-[0.04em] text-amber-dk">
+                        до {d.validUntil}
+                      </span>
+                    )}
                   </div>
                 )}
 
@@ -189,10 +205,12 @@ export function Equipment({ compact = false }: { compact?: boolean }) {
                     <dt className="text-muted">Заводской номер</dt>
                     <dd className="num-tab m-0 font-mono font-medium text-ink">{d.serial}</dd>
                   </div>
-                  <div className="flex justify-between gap-4 border-b border-line py-2">
-                    <dt className="text-muted">Номер в реестре типов</dt>
-                    <dd className="num-tab m-0 font-mono text-ink">{d.regType}</dd>
-                  </div>
+                  {d.regType && (
+                    <div className="flex justify-between gap-4 border-b border-line py-2">
+                      <dt className="text-muted">Номер в реестре типов</dt>
+                      <dd className="num-tab m-0 font-mono text-ink">{d.regType}</dd>
+                    </div>
+                  )}
                 </dl>
 
                 {d.note && !compact && (

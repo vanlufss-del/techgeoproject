@@ -1122,14 +1122,15 @@ export type Device = {
   name: string;
   model: string;
   serial: string;
-  kind: "gnss" | "total" | "level" | "theodolite" | "staff" | "tape";
-  regType: string;
-  certificate: string;
-  verifiedAt: string;
-  validUntil: string;
-  verifier: string;
+  kind: "gnss" | "total" | "level" | "theodolite" | "staff" | "tape" | "drone";
+  /** Поля поверки. У беспилотника их нет: он не средство измерений. */
+  regType?: string;
+  certificate?: string;
+  verifiedAt?: string;
+  validUntil?: string;
+  verifier?: string;
   fgis?: string;
-  pdf: string;
+  pdf?: string;
   photo?: string;
   /** false — прибор по договору аренды. На сайте не выводим, поле для внутреннего учёта. */
   owned?: boolean;
@@ -1156,6 +1157,28 @@ export const equipment = {
     doc: "Свидетельство",
   },
   items: [
+    {
+      slug: "dji-matrice-4e",
+      owned: true,
+      name: "Беспилотный авиационный комплекс",
+      model: "DJI Matrice 4E",
+      serial: "",
+      kind: "drone",
+      photo: "/img/equipment/dji-matrice-4e",
+      specs: [
+        ["Точность RTK, план", "1 см + 1 ppm"],
+        ["Точность RTK, высота", "1,5 см + 1 ppm"],
+        ["Основная камера", "4/3\" CMOS, 20 Мп, механический затвор"],
+        ["Дополнительные камеры", "средний теле- и телефото, по 48 Мп"],
+        ["Лазерный дальномер", "до 1800 м, погрешность ±(0,2 + 0,0015·D) м"],
+        ["Время полёта", "до 49 мин"],
+        ["Взлётная масса", "1219 г"],
+        ["Рабочая температура", "от −10 до +40 °C"],
+        ["Спутниковые системы", "GPS, ГЛОНАСС, Galileo, BeiDou"],
+      ],
+      note:
+        "Беспилотник не относится к средствам измерений и поверке не подлежит. Точность результатов съёмки обеспечивается встроенным приёмником RTK и наземным планово-высотным обоснованием, которое создаётся поверенными приборами из этого же списка.",
+    },
     {
       slug: "leica-flexline-ts07",
       specs: [
