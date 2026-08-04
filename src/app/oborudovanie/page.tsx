@@ -16,9 +16,11 @@ export const metadata: Metadata = {
 const wrap = "mx-auto w-full max-w-[1180px] px-8 max-lg:px-5";
 
 export default function EquipmentPage() {
-  const soonest = [...equipment.items].sort((a, b) => {
+  // считаем только средства измерений: у беспилотника поверки нет
+  const verifiable = equipment.items.filter((x) => Boolean(x.validUntil));
+  const soonest = [...verifiable].sort((a, b) => {
     const d = (s: string) => s.split(".").reverse().join("-");
-    return d(a.validUntil) < d(b.validUntil) ? -1 : 1;
+    return d(a.validUntil!) < d(b.validUntil!) ? -1 : 1;
   })[0];
 
   return (
@@ -42,8 +44,8 @@ export default function EquipmentPage() {
           <div className="mt-9 grid grid-cols-3 gap-px border border-line bg-line max-lg:grid-cols-1">
             {[
               ["Приборов в работе", String(equipment.items.length)],
-              ["Все поверки", "действующие"],
-              ["Ближайшая поверка до", soonest.validUntil],
+              ["Поверенных средств измерений", String(verifiable.length)],
+              ["Ближайшая поверка до", soonest?.validUntil ?? "—"],
             ].map(([k, v]) => (
               <div key={k} className="bg-cream px-7 py-6">
                 <div className="mb-1.5 font-mono text-[12px] font-medium uppercase tracking-[0.14em] text-muted">{k}</div>
