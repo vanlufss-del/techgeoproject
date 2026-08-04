@@ -58,7 +58,7 @@ export function LeadDialog() {
         body: JSON.stringify({
           name,
           phone: String(fd.get("phone")),
-          company: String(fd.get("company") ?? ""),
+          tgp_ref: String(fd.get("tgp_ref") ?? ""),
           source: "modal",
         }),
       });
@@ -123,8 +123,17 @@ export function LeadDialog() {
           <p className="mb-6 text-[15px] leading-relaxed text-muted">{lead.sub}</p>
 
           <form onSubmit={submit} noValidate>
-            {/* ловушка для ботов — люди её не видят */}
-            <input type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute left-[-9999px] h-0 w-0" />
+            {/* Ловушка для ботов. Имя намеренно бессмысленное: поле с именем company
+                браузеры принимали за «организацию» и подставляли туда данные из
+                автозаполнения — живые заявки отсекались как спам. */}
+            <input
+              type="text"
+              name="tgp_ref"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute left-[-9999px] h-0 w-0"
+            />
 
             <div className="relative mb-3">
               <input name="name" type="text" required autoComplete="name" aria-label={lead.namePlaceholder} placeholder={lead.namePlaceholder} className={field} />

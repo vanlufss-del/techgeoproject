@@ -7,7 +7,7 @@ const schema = z.object({
   name: z.string().trim().min(2, "Слишком короткое имя").max(80),
   phone: z.string().trim().min(10).max(24),
   source: z.string().max(40).optional(),
-  company: z.string().max(0).optional(), // honeypot: заполнено только ботом
+  tgp_ref: z.string().optional(), // ловушка для ботов, проверяется отдельно
 });
 
 export async function POST(req: Request) {
@@ -29,9 +29,17 @@ export async function POST(req: Request) {
 
   const parsed = schema.safeParse(body);
   if (!parsed.success) {
+    console.warn("[lead] данные не прошли проверку:", parsed.error.issues);
     return NextResponse.json({ ok: false, error: "invalid" }, { status: 400 });
   }
   const { name, phone, source } = parsed.data;
+
+  // Ловушка проверяется после разбора, чтобы в логе было видно именно её срабатывание.
+  // Отвечаем как при успехе: бот не должен понять, что его отсеяли.
+  if (parsed.data.tgp_ref) {
+    console.warn("[lead] сработала ловушка для ботов:", { ip });
+    return NextResponse.json({ ok: true, delivered: false });
+  }
 
   const digits = phone.replace(/\D/g, "");
   if (digits.length < 11) {
