@@ -1,5 +1,5 @@
 import type { Post } from "@/blog";
-import { company, faq, geo, services } from "@/copy";
+import { company, faq, geo, maps, services } from "@/copy";
 import { siteUrl } from "./site";
 
 /** JSON-LD: организация, услуги, хлебные крошки, FAQ. */
@@ -24,6 +24,9 @@ export function organizationSchema() {
     },
     taxID: company.inn,
     vatID: company.inn,
+    /** Внешние профили компании: по ним поисковики связывают сайт с карточками
+     *  в справочниках и понимают, что это одна и та же организация. */
+    sameAs: [maps.twogisLink, maps.yandexLink],
     contactPoint: {
       "@type": "ContactPoint",
       telephone: company.phoneHref.replace("tel:", ""),

@@ -1008,8 +1008,9 @@ export const maps = {
   /** Канонический адрес карточки дома, а не поисковый запрос. */
   yandexLink:
     "https://yandex.ru/maps/64/kemerovo/house/kuzbasskaya_ulitsa_33a/bE8YdgBhQEQAQFtvfX93cXlhZA==/",
-  /** У 2ГИС оставляем поиск по адресу: он показывает карточку дома с организациями. */
-  twogisLink: "https://2gis.ru/kemerovo/search/" + encodeURIComponent("Кузбасская 33А"),
+  /** Карточка компании в 2ГИС. Постоянный идентификатор фирмы: он не меняется
+   *  при правках названия и адреса, в отличие от поискового запроса. */
+  twogisLink: "https://2gis.ru/kemerovo/firm/70000001116699815",
 } as const;
 
 /* ---------- Политика конфиденциальности ---------- */
