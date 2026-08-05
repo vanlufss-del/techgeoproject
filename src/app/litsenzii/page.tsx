@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { certificates, company, license } from "@/copy";
+import { certificates, company, license, sro } from "@/copy";
 import { JsonLd, breadcrumbSchema } from "@/lib/schema";
 import { Reveal } from "@/components/Reveal";
 import { Eyebrow } from "@/components/Type";
 
 export const metadata: Metadata = {
-  title: "Лицензия и сертификаты качества",
+  title: "Лицензия, СРО и сертификаты качества",
   description:
-    "Действующая лицензия ООО «ТехГеоПроект» на производство маркшейдерских работ и сертификаты системы менеджмента качества по ГОСТ Р ИСО 9001-2015. Регистрационные номера, сроки действия, документы в PDF.",
+    "Лицензия Ростехнадзора на производство маркшейдерских работ, членство в СРО проектировщиков и сертификаты системы менеджмента качества. Регистрационные номера, сроки действия, документы в PDF.",
   alternates: { canonical: "/litsenzii" },
   openGraph: { title: "Лицензия и документы — ТехГеоПроект", url: "/litsenzii" },
 };
@@ -118,6 +118,90 @@ export default function LicensePage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section id="sro" className="bg-cream py-20 max-lg:py-14">
+        <div className={wrap}>
+          <Reveal>
+            <div className="mb-5">
+              <Eyebrow>{sro.tag}</Eyebrow>
+            </div>
+          </Reveal>
+          <Reveal delay={70}>
+            <h2 className="mb-4 max-w-[24ch] text-[clamp(24px,3vw,34px)] font-semibold leading-snug tracking-[-0.02em]">
+              {sro.title}
+            </h2>
+          </Reveal>
+          <Reveal delay={120}>
+            <p className="m-0 mb-10 max-w-[76ch] text-[17px] leading-relaxed text-muted">{sro.lead}</p>
+          </Reveal>
+
+          <div className="grid grid-cols-[0.85fr_1.15fr] items-start gap-14 max-lg:grid-cols-1 max-lg:gap-9">
+            <Reveal>
+              <a
+                href={sro.fileUrl}
+                target="_blank"
+                rel="noopener"
+                className="group block no-underline"
+              >
+                <div className="overflow-hidden rounded-lg border border-line bg-white">
+                  <picture>
+                    <source type="image/avif" srcSet={`${sro.preview}.avif`} />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`${sro.preview}.jpg`}
+                      alt="Выписка из реестра членов саморегулируемой организации Ассоциация Проектировщиков"
+                      width={495}
+                      height={700}
+                      loading="lazy"
+                      decoding="async"
+                      className="block h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  </picture>
+                </div>
+                <span className="mt-4 inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.12em] text-amber-dk">
+                  {sro.fileLabel}
+                  <span
+                    aria-hidden="true"
+                    className="h-[2px] w-6 bg-amber transition-[width] duration-300 group-hover:w-10"
+                  />
+                </span>
+              </a>
+            </Reveal>
+
+            <div>
+              <Reveal delay={70}>
+                <dl className="m-0 mb-9 border-t border-graphite/25">
+                  {sro.fields.map(([k, v]) => (
+                    <div
+                      key={k}
+                      className="flex justify-between gap-8 border-b border-line py-3 max-lg:flex-col max-lg:gap-1"
+                    >
+                      <dt className="shrink-0 text-[14.5px] leading-snug text-muted">{k}</dt>
+                      <dd className="num-tab m-0 text-right text-[15px] font-medium leading-snug text-ink max-lg:text-left">
+                        {v}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </Reveal>
+              <Reveal delay={120}>
+                <h3 className="mb-3 text-[19px] font-semibold tracking-[-0.01em] text-ink">{sro.scopeTitle}</h3>
+                <ul className="m-0 mb-6 list-none p-0">
+                  {sro.scope.map((x) => (
+                    <li
+                      key={x}
+                      className="relative py-[6px] pl-[18px] text-[15.5px] leading-snug text-graphite before:absolute before:left-0.5 before:top-[13px] before:h-[5px] before:w-[5px] before:rounded-full before:bg-amber"
+                    >
+                      {x}
+                    </li>
+                  ))}
+                </ul>
+                <p className="m-0 border-l-[3px] border-amber pl-5 text-[15px] leading-relaxed text-ink">{sro.note}</p>
+              </Reveal>
+            </div>
+          </div>
         </div>
       </section>
 
