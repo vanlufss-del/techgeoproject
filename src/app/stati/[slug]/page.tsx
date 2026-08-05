@@ -113,7 +113,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                     {s.title}
                     <span
                       aria-hidden="true"
-                      className="h-[2px] w-8 shrink-0 origin-left bg-amber transition-transform duration-300 group-hover:scale-x-[1.75]"
+                      className="h-[2px] w-8 shrink-0 bg-amber transition-[width] duration-300 group-hover:w-14"
                     />
                   </Link>
                 ))}

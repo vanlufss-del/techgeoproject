@@ -160,7 +160,7 @@ export function Services() {
                   <span className="num-tab font-mono text-[13px] font-medium leading-none text-amber-dk">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span aria-hidden="true" className="h-[2px] w-9 origin-left rounded-sm bg-amber transition-transform duration-300 group-hover:scale-x-[1.78]" />
+                  <span aria-hidden="true" className="h-[2px] w-9 rounded-sm bg-amber transition-[width] duration-300 group-hover:w-16" />
                 </div>
                 <h3 className="mb-5 flex min-h-[2.5em] items-start text-[clamp(22px,2.4vw,30px)] font-semibold leading-tight tracking-[-0.02em] max-lg:min-h-0">
                   <Link href={`/uslugi/${s.slug}`} className="no-underline transition hover:text-amber-dk">{s.title}</Link>

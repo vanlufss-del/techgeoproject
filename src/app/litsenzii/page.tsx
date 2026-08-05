@@ -164,7 +164,7 @@ export default function LicensePage() {
                   {sro.fileLabel}
                   <span
                     aria-hidden="true"
-                    className="h-[2px] w-6 origin-left bg-amber transition-transform duration-300 group-hover:scale-x-[1.67]"
+                    className="h-[2px] w-6 bg-amber transition-[width] duration-300 group-hover:w-10"
                   />
                 </span>
               </a>
@@ -270,7 +270,7 @@ export default function LicensePage() {
                     Открыть PDF
                     <span
                       aria-hidden="true"
-                      className="h-[2px] w-6 origin-left bg-amber transition-transform duration-300 group-hover:scale-x-[1.67]"
+                      className="h-[2px] w-6 bg-amber transition-[width] duration-300 group-hover:w-10"
                     />
                   </span>
                 </a>
