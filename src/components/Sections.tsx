@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  about, advantages, company, contactStrip, cta, docs, faq, goal, intro, legal, license, services, values,
+  advantages, company, contactStrip, cta, docs, faq, goal, intro, legal, license, services, values,
 } from "@/copy";
 import { AdvIcon, Mark, MaxIcon, WhatsAppIcon } from "./Icons";
 import { Reveal } from "./Reveal";
@@ -286,44 +286,6 @@ export function ContactStrip() {
             {company.phone}
           </a>
         </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- О компании (тёмный) ---------- */
-export function About() {
-  return (
-    <section className="relative overflow-hidden bg-dark py-24 text-white max-lg:py-16">
-      <svg className="absolute -right-32 -top-16 w-[680px] opacity-[0.14]" viewBox="0 0 600 400" fill="none" stroke="#F2A73B" strokeWidth="1" aria-hidden="true">
-        {[60, 110, 160, 210, 260, 310, 360].map((y) => (
-          <path key={y} d={`M0 ${y}C90 ${y - 40} 180 ${y + 36} 300 ${y - 4}s180-36 300 4`} />
-        ))}
-      </svg>
-      <div className={`${wrap} relative z-[2]`}>
-        <Reveal><div className={tagWrap}><Eyebrow>{about.tag}</Eyebrow></div></Reveal>
-        <Reveal delay={80}><Headline text={about.title} mark={about.titleMark} className={`${h2} text-white`} /></Reveal>
-        <Reveal delay={160}><p className="m-0 max-w-[78ch] text-[17.5px] leading-relaxed text-white/80">{about.lead}</p></Reveal>
-
-        <div className="mt-12 grid grid-cols-2 items-center gap-14 max-lg:grid-cols-1 max-lg:gap-10">
-          <Reveal>
-            <div className="grid aspect-[4/3] place-items-center rounded-lg border border-white/10 bg-[#242930] font-mono text-[12px] font-medium uppercase tracking-[0.14em] text-white/35">
-              {about.photoLabel}
-            </div>
-          </Reveal>
-          <div className="flex flex-col gap-3">
-            {about.points.map((p, i) => (
-              <Reveal key={p} delay={i * 70}>
-                <div className="flex items-center gap-4 rounded-full bg-white/5 px-6 py-4">
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-amber text-ink">
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
-                  </span>
-                  <span className="text-[15.5px] leading-snug">{p}</span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
