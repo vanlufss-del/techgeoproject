@@ -83,7 +83,7 @@ export function Advantages() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(150deg,rgba(24,28,33,.42) 0%,rgba(24,28,33,.2) 42%,rgba(24,28,33,.46) 100%)",
+                "linear-gradient(150deg,rgba(20,23,27,.62) 0%,rgba(20,23,27,.36) 42%,rgba(20,23,27,.58) 100%)",
             }}
           />
 
@@ -92,7 +92,7 @@ export function Advantages() {
               <div className={tagWrap}><Eyebrow>{advantages.tag}</Eyebrow></div>
             </Reveal>
             <Reveal delay={80}>
-              <Headline text={advantages.title} mark={advantages.titleMark} className={`${h2} mb-0 text-white [text-shadow:0_2px_14px_rgba(20,24,28,.45)]`} />
+              <Headline text={advantages.title} mark={advantages.titleMark} className={`${h2} mb-0 text-white [text-shadow:0_2px_16px_rgba(10,12,14,.7)]`} />
             </Reveal>
 
             <div className="mt-11 grid grid-cols-3 gap-x-8 gap-y-9 pb-1 pr-1 max-lg:grid-cols-1 max-lg:gap-y-7">
@@ -160,7 +160,7 @@ export function Services() {
                   <span className="num-tab font-mono text-[13px] font-medium leading-none text-amber-dk">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span aria-hidden="true" className="h-[2px] w-9 rounded-sm bg-amber transition-[width] duration-300 group-hover:w-16" />
+                  <span aria-hidden="true" className="h-[2px] w-9 origin-left rounded-sm bg-amber transition-transform duration-300 group-hover:scale-x-[1.78]" />
                 </div>
                 <h3 className="mb-5 flex min-h-[2.5em] items-start text-[clamp(22px,2.4vw,30px)] font-semibold leading-tight tracking-[-0.02em] max-lg:min-h-0">
                   <Link href={`/uslugi/${s.slug}`} className="no-underline transition hover:text-amber-dk">{s.title}</Link>

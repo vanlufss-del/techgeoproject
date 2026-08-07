@@ -49,7 +49,11 @@ export function LeadDialog() {
     const fd = new FormData(e.currentTarget);
     const name = String(fd.get("name") ?? "").trim();
     const digits = String(fd.get("phone") ?? "").replace(/\D/g, "");
-    if (!name || digits.length < 11) return;
+    if (!name || digits.length < 11) {
+      setErrorKind("invalid");
+      setState("error");
+      return;
+    }
     setState("sending");
     try {
       const res = await fetch("/api/lead", {
@@ -172,7 +176,7 @@ export function LeadDialog() {
             </label>
 
             {state === "error" && (
-              <p className="mb-3 text-sm leading-snug text-[#A32D2D]">
+              <p role="alert" aria-live="polite" className="mb-3 text-sm leading-snug text-[#A32D2D]">
                 {errorKind === "tooMany"
                   ? lead.errorTooMany
                   : errorKind === "invalid"
