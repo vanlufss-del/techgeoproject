@@ -91,11 +91,6 @@ function Featured() {
               </dl>
 
               <div className="flex flex-wrap items-center gap-4">
-                {!d.pdf && d.note && (
-                  <p className="m-0 max-w-[62ch] border-l-[3px] border-amber pl-5 text-[14.5px] leading-relaxed text-graphite">
-                    {d.note}
-                  </p>
-                )}
                 {d.pdf && (
                 <a
                   href={d.pdf}
@@ -106,7 +101,7 @@ function Featured() {
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
                     <path d="M14 3v5h5M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
                   </svg>
-                  Свидетельство о поверке
+                  {d.docLabel ?? "Свидетельство о поверке"}
                 </a>
                 )}
                 {d.fgis && (
@@ -123,6 +118,12 @@ function Featured() {
                   </a>
                 )}
               </div>
+
+              {d.note && (
+                <p className="mt-6 max-w-[68ch] border-l-[3px] border-amber pl-5 text-[14.5px] leading-relaxed text-graphite">
+                  {d.note}
+                </p>
+              )}
             </div>
           </article>
         </Reveal>
