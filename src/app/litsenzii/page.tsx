@@ -168,6 +168,18 @@ export default function LicensePage() {
                   />
                 </span>
               </a>
+              <a
+                href={sro.noprizUrl}
+                target="_blank"
+                rel="noopener"
+                className="group mt-3 flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.12em] text-amber-dk no-underline"
+              >
+                {sro.noprizLabel}
+                <span
+                  aria-hidden="true"
+                  className="h-[2px] w-6 origin-left bg-amber transition-transform duration-300 group-hover:scale-x-[1.67]"
+                />
+              </a>
             </Reveal>
 
             <div>
