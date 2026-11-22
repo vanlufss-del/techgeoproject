@@ -139,47 +139,40 @@ export default function LicensePage() {
 
           <div className="grid grid-cols-[0.85fr_1.15fr] items-start gap-14 max-lg:grid-cols-1 max-lg:gap-9">
             <Reveal>
-              <a
-                href={sro.fileUrl}
-                target="_blank"
-                rel="noopener"
-                className="group block no-underline"
-              >
-                <div className="overflow-hidden rounded-lg border border-line bg-white">
-                  <picture>
-                    <source type="image/avif" srcSet={`${sro.preview}.avif`} />
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={`${sro.preview}.jpg`}
-                      alt="Выписка из реестра членов саморегулируемой организации Ассоциация Проектировщиков"
-                      width={495}
-                      height={700}
-                      loading="lazy"
-                      decoding="async"
-                      className="block h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
-                    />
-                  </picture>
-                </div>
-                <span className="mt-4 inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.12em] text-amber-dk">
-                  {sro.fileLabel}
-                  <span
-                    aria-hidden="true"
-                    className="h-[2px] w-6 origin-left bg-amber transition-transform duration-300 group-hover:scale-x-[1.67]"
-                  />
-                </span>
-              </a>
-              <a
-                href={sro.noprizUrl}
-                target="_blank"
-                rel="noopener"
-                className="group mt-3 flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.12em] text-amber-dk no-underline"
-              >
-                {sro.noprizLabel}
-                <span
-                  aria-hidden="true"
-                  className="h-[2px] w-6 origin-left bg-amber transition-transform duration-300 group-hover:scale-x-[1.67]"
-                />
-              </a>
+              <div className="grid grid-cols-2 gap-5 max-sm:gap-3">
+                {sro.docs.map((d) => (
+                  <a
+                    key={d.fileUrl}
+                    href={d.fileUrl}
+                    target="_blank"
+                    rel="noopener"
+                    className="group block no-underline"
+                  >
+                    <div className="overflow-hidden rounded-lg border border-line bg-white">
+                      <picture>
+                        <source type="image/avif" srcSet={`${d.preview}.avif`} />
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={`${d.preview}.jpg`}
+                          alt={d.alt}
+                          width={495}
+                          height={700}
+                          loading="lazy"
+                          decoding="async"
+                          className="block h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
+                      </picture>
+                    </div>
+                    <span className="mt-4 inline-flex items-center gap-2 font-mono text-[12px] uppercase leading-snug tracking-[0.12em] text-amber-dk max-sm:text-[11px]">
+                      {d.label}
+                      <span
+                        aria-hidden="true"
+                        className="h-[2px] w-6 shrink-0 origin-left bg-amber transition-transform duration-300 group-hover:scale-x-[1.67]"
+                      />
+                    </span>
+                  </a>
+                ))}
+              </div>
             </Reveal>
 
             <div>
